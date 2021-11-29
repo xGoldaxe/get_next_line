@@ -1,0 +1,7 @@
+*.o
+*.out
+*.gch
+*.a
+/gnlTester/
+./.vscode/
+.gitignore
