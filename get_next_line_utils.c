@@ -6,11 +6,25 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 10:57:17 by pleveque          #+#    #+#             */
-/*   Updated: 2021/11/29 16:35:22 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/11/30 17:22:11 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+size_t	ft_strlen_n(char *str)
+{
+	size_t	i;
+
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i] != '\0' && str[i] != '\n')
+		i++;
+	if (str[i] == '\n')
+		i++;
+	return (i);
+}
 
 size_t	ft_strlen(const char *str)
 {
@@ -20,10 +34,15 @@ size_t	ft_strlen(const char *str)
 		return (0);
 	i = 0;
 	while (str[i] != '\0')
-	{
 		i++;
-	}
 	return (i);
+}
+
+char	*free_null(char *ptr)
+{
+	if (ptr)
+		free(ptr);
+	return (NULL);
 }
 
 char	*ft_realloc_cat(char *src, char *dst)
@@ -42,18 +61,14 @@ char	*ft_realloc_cat(char *src, char *dst)
 			tmp[i] = dst[i];
 			i++;
 		}
-		free(dst);
 	}
-	if (src)
+	while (*src)
 	{
-		while (*src)
-		{
-			tmp[i] = *src;
-			i++;
-			src++;
-		}
+		tmp[i] = *src;
+		i++;
+		src++;
 	}
+	dst = free_null(dst);
 	tmp[i] = '\0';
-	dst = tmp;
-	return (dst);
+	return (tmp);
 }
