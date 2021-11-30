@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 10:57:17 by pleveque          #+#    #+#             */
-/*   Updated: 2021/11/30 17:22:11 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/11/30 17:47:54 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,22 @@ char	*free_null(char *ptr)
 	if (ptr)
 		free(ptr);
 	return (NULL);
+}
+
+int	ft_isline(char *str)
+{
+	unsigned int	i;
+
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 char	*ft_realloc_cat(char *src, char *dst)

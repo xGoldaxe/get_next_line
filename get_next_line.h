@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:21:03 by pleveque          #+#    #+#             */
-/*   Updated: 2021/11/30 17:28:45 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/11/30 17:57:35 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1
+#  define BUFFER_SIZE 1
 # endif
 
 # include	<stdio.h>
@@ -33,5 +33,6 @@ char	*ft_realloc_cat(char *src, char *dst);
 size_t	ft_strlen_n(char *str);
 char	*free_null(char *ptr);
 size_t	ft_strlen(const char *str);
+int		ft_isline(char *str);
 
 #endif

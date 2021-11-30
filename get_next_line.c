@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 16:18:07 by pleveque          #+#    #+#             */
-/*   Updated: 2021/11/30 17:30:00 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/11/30 17:48:38 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,25 @@ char	*hydrate_line(char *src)
 {
 	char		*dst;
 	size_t		len;
-	char		tmp;
+	size_t		i;
 
-	len = ft_strlen_n(src);
+	len = 0;
+	while (src[len] != '\0' && src[len] != '\n')
+		len++;
+	if (src[len] == '\n')
+		len++;
 	if (len == 0)
 		return (NULL);
-	tmp = src[len];
-	src[len] = '\0';
-	dst = ft_realloc_cat(src, NULL);
-	src[len] = tmp;
+	dst = malloc(sizeof(char) * (len + 1));
+	if (!dst)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
 	return (dst);
 }
 
@@ -81,7 +91,7 @@ char	*get_next_line(int fd)
 
 	buffer = NULL;
 	res = NULL;
-	while (!buffer || (ft_strlen(line) == ft_strlen_n(line)
+	while (!buffer || (!ft_isline(line)
 			&& ft_strlen(buffer) == BUFFER_SIZE))
 	{
 		buffer = read_buff(buffer, fd);
@@ -101,23 +111,23 @@ char	*get_next_line(int fd)
 	return (res);
 }
 
-int	main(int argc, char **argv)
-{
-	int				fd;
-	char			*line;
-	unsigned int	i;
+//int	main(int argc, char **argv)
+//{
+//	int				fd;
+//	char			*line;
+//	unsigned int	i;
 
-	(void)argc;
-	(void)argv;
-	fd = open(argv[1], O_RDONLY);
-	line = get_next_line(fd);
-	i = 1;
-	printf("%d	%s", i, line);
-	i++;
-	while (line)
-	{
-		line = get_next_line(fd);
-		printf("%d	%s", i, line);
-		i++;
-	}
-}
+//	(void)argc;
+//	(void)argv;
+//	fd = open(argv[1], O_RDONLY);
+//	line = get_next_line(fd);
+//	i = 1;
+//	printf("%d	%s", i, line);
+//	i++;
+//	while (line)
+//	{
+//		line = get_next_line(fd);
+//		printf("%d	%s", i, line);
+//		i++;
+//	}
+//}
