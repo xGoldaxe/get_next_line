@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 10:57:17 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/01 12:14:55 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/01 15:08:15 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,41 +76,52 @@ char	*ft_realloc_cat(char *src, char *dst)
 	return (tmp);
 }
 
-char	*crop_line(char *src)
+char	*crop_line(char *src, unsigned int m)
 {
 	char		*dst;
 	size_t		len;
 
 	len = fts(src, 1);
-	dst = ft_realloc_cat(&src[len], NULL);
-	src = free_null(src);
-	if (!dst)
-		return (NULL);
-	return (dst);
-}
-
-char	*hydrate_line(char *src)
-{
-	char		*dst;
-	size_t		len;
-	size_t		i;
-
-	len = 0;
-	while (src[len] != '\0' && src[len] != '\n')
-		len++;
-	if (src[len] == '\n')
-		len++;
+	if (m == 0)
+	{
+		dst = ft_realloc_cat(&src[len], NULL);
+		src = free_null(src);
+		if (!dst)
+			return (NULL);
+		return (dst);
+	}
 	if (len == 0)
 		return (NULL);
 	dst = malloc(sizeof(char) * (len + 1));
 	if (!dst)
 		return (NULL);
-	i = 0;
-	while (i < len)
+	m = 0;
+	while (m < len)
 	{
-		dst[i] = src[i];
-		i++;
+		dst[m] = src[m];
+		m++;
 	}
-	dst[i] = '\0';
+	dst[m] = '\0';
 	return (dst);
+}
+
+char	*read_buff(char *buffer, int fd)
+{
+	int	readed;
+
+	if (BUFFER_SIZE == 0)
+		return (NULL);
+	if (buffer)
+		buffer = free_null(buffer);
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
+		return (NULL);
+	readed = read(fd, buffer, BUFFER_SIZE);
+	if (readed < 0)
+	{
+		buffer = free_null(buffer);
+		return (NULL);
+	}
+	buffer[readed] = '\0';
+	return (buffer);
 }
