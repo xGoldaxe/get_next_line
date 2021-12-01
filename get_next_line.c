@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 16:18:07 by pleveque          #+#    #+#             */
-/*   Updated: 2021/11/30 17:48:38 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/01 11:52:24 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,24 +110,3 @@ char	*get_next_line(int fd)
 	buffer = free_null(buffer);
 	return (res);
 }
-
-//int	main(int argc, char **argv)
-//{
-//	int				fd;
-//	char			*line;
-//	unsigned int	i;
-
-//	(void)argc;
-//	(void)argv;
-//	fd = open(argv[1], O_RDONLY);
-//	line = get_next_line(fd);
-//	i = 1;
-//	printf("%d	%s", i, line);
-//	i++;
-//	while (line)
-//	{
-//		line = get_next_line(fd);
-//		printf("%d	%s", i, line);
-//		i++;
-//	}
-//}

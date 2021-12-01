@@ -1,3 +1,4 @@
+*.txt
 *.o
 *.out
 *.gch
@@ -5,4 +6,3 @@
 /gnlTester/
 ./.vscode/
 .gitignore
-*.txt
